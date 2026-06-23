@@ -15,17 +15,9 @@ Add the package dependency to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/d-date/google-mlkit-swiftpm", from: "9.0.0")
+    .package(url: "https://github.com/amold-idmission/google-mlkit-swiftpm", from: "9.0.2")
 ]
 ```
-
-> **Submitting to App Store?** The `9.0.0` zips embed Info.plist values like `1.0.0-beta16` for a few internal frameworks, which App Store Connect rejects. Pin the wrapper-only repackage instead:
->
-> ```swift
-> .package(url: "https://github.com/d-date/google-mlkit-swiftpm", exact: "9.0.0-1")
-> ```
->
-> `9.0.0-1` is a SemVer pre-release of the same upstream MLKit `9.0.0` build with the Info.plist regression fixed. SwiftPM's `from: "9.0.0"` excludes pre-release tags, so existing consumers stay on `9.0.0`; AppStore-blocked consumers opt in via `exact:`.
 
 Then add the specific ML Kit modules you need to your target dependencies:
 
@@ -33,18 +25,7 @@ Then add the specific ML Kit modules you need to your target dependencies:
 .target(
     name: "YourTarget",
     dependencies: [
-        .product(name: "MLKitBarcodeScanning", package: "google-mlkit-swiftpm"),
-        .product(name: "MLKitFaceDetection", package: "google-mlkit-swiftpm"),
-        .product(name: "MLKitTextRecognition", package: "google-mlkit-swiftpm"),
-        // Also available: MLKitTextRecognitionChinese, MLKitTextRecognitionDevanagari,
-        //                  MLKitTextRecognitionJapanese, MLKitTextRecognitionKorean
-        .product(name: "MLKitImageLabeling", package: "google-mlkit-swiftpm"),
-        .product(name: "MLKitObjectDetection", package: "google-mlkit-swiftpm"),
-        .product(name: "MLKitPoseDetection", package: "google-mlkit-swiftpm"),
-        .product(name: "MLKitSegmentationSelfie", package: "google-mlkit-swiftpm"),
-        .product(name: "MLKitLanguageID", package: "google-mlkit-swiftpm"),
-        .product(name: "MLKitTranslate", package: "google-mlkit-swiftpm"),
-        .product(name: "MLKitSmartReply", package: "google-mlkit-swiftpm"),
+        .product(name: "MLKitTextRecognition", package: "google-mlkit-swiftpm")
     ]
 )
 ```
@@ -72,18 +53,7 @@ Download `GoogleMVFaceDetectorResources.bundle` from [Release](https://github.co
 This package supports the following Google ML Kit features:
 
 ### Vision APIs
-- **Barcode Scanning** - Scan and decode barcodes
-- **Face Detection** - Detect faces and facial features
 - **Text Recognition** - Recognize text in images (v2) with variants for Chinese, Devanagari, Japanese, and Korean
-- **Image Labeling** - Identify objects, locations, activities, and more (standard and custom models)
-- **Object Detection & Tracking** - Detect and track objects in images and video (standard and custom models)
-- **Pose Detection** - Detect body poses and positions (standard and accurate)
-- **Selfie Segmentation** - Segment people from the background
-
-### Language APIs
-- **Language Identification** - Identify the language of text
-- **Translation** - Translate text between languages
-- **Smart Reply** - Generate contextual reply suggestions
 
 ## Limitation
 
